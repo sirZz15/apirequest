@@ -1,14 +1,41 @@
 from pydantic import BaseModel, Field
+import requests
 
+class APIRequest:
+    def __init__(self, url, api_key):
+        self.url = url
+        self.headers = {
+            'Api-Key': api_key  # This is the header key for the API key, as indicated in your Postman collection.
+        }
+
+    def get_data(self):
+        try:
+            response = requests.get(self.url, headers=self.headers)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            raise SystemExit(e)
+class JSONParser:
+    def __init__(self, data):
+        self.data = data
+
+    def extract_info(self):
+        # No need to parse 'self.data' as it's already a dictionary.
+        return self.data  # or process 'self.data' as needed
+        
 class APIRequestInput(BaseModel):
     url: str = Field(..., description="The URL to send the request to")
     api_key: str = Field(..., description="The API key for the request")
 
 from superagi.tools.base_tool import BaseTool
 from typing import Type, Any
-from api_request import APIRequest
-from json_parser import JSONParser
-from error_handler import ErrorHandler
+
+class ErrorHandler:
+    def __init__(self):
+        pass
+
+    def handle_error(self, error):
+        print(f"An error occurred: {error}")
 
 class APIRequestTool(BaseTool):
     """
