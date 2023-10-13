@@ -1,5 +1,6 @@
 from superagi.tools.base_tool import BaseToolkit, BaseTool
 from typing import Type, List
+from apirequest_tool import APIRequestTool
 
 class APIRequestToolkit(BaseToolkit):
     name: str = "API Request Toolkit"
