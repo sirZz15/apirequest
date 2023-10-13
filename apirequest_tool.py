@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 import requests
+from superagi.tools.base_tool import BaseTool
 
 class APIRequest:
     def __init__(self, url, api_key):
