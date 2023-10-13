@@ -1,8 +1,8 @@
 from superagi.tools.base_tool import BaseToolkit, BaseTool
 from typing import Type, List
 
-class DataProcessingToolkit(BaseToolkit):
-    name: str = "Data Processing Toolkit"
+class APIRequestToolkit(BaseToolkit):
+    name: str = "API Request Toolkit"
     description: str = "Toolkit for processing data, including API requests"
 
     def get_tools(self) -> List[BaseTool]:
